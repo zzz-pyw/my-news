@@ -1,0 +1,16 @@
+name: Auto Check In
+on:
+  schedule:
+    # 每周一早上8点（北京时间）自动运行
+    - cron: "0 0 * * 1"
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  checkin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Check In workflow
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Check In
+          token: ${{ secrets.GITHUB_TOKEN }}
